@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <!-- MDUI CSS -->
+    <link rel="stylesheet" href="mdui/css/mdui.min.css" />
+    
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!--script src="mdui/js/mdui.min.js"></script-->
+    <title>NropHub - VKey</title>
+    <style>
+        body{
+            margin:8px;
+        }
+        #prog{
+            position:fixed;
+            left:0px;
+            top:0px;
+            width:100%;
+            z-index:5000;
+            background:;
+        }
+        #prog>*{
+            background:orange;
+        }
+        .contents{
+            width:100%;
+            overflow:auto;
+            text-align:center;
+        }
+        *{
+            user-select:none;
+        }
+        .rang{
+            z-index:900;
+            margin:0px 16px 0px 16px;
+        }
+    </style>
+</head>
+
+<body class="mdui-theme-primary-teal mdui-theme-accent-orange">
+    
+    <h1>NropHub VKey生成</h1>
+    <p>虚拟激活码</p>
+    参数:<input id="in">
+    <button style="width:100%" onclick="get()">生成</button>
+    <p id="r"></p>
+    
+    <div id="ve" style="position:fixed;left:0px;bottom:0px;width:100%;height:100%;background:black;display:none">
+    <iframe id="ifr" width="100%" height="100%" frameborder="0"></iframe>
+</div>
+
+    <script src="mdui/js/mdui.min.js"></script>
+    <script>
+        function getVKey(v){
+            var vs=v.split("-")
+            var vs1=parseInt(vs[0])
+            var vs2=parseInt(vs[1])
+            return (Math.round((vs1*vs2+vs1+vs2)/vs1*vs2))
+        }
+        function get(){
+            var v=document.getElementById("in").value
+            document.getElementById("r").innerHTML=getVKey(v)
+        }
+    </script>
+
+    <!-- MDUI JavaScript -->
+    <script src="mdui/js/mdui.min.js"></script>
+</body>
+
+</html>
