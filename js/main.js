@@ -1,6 +1,6 @@
 function exit(){
     if(参数["VE"]==1){
-        dom.get("exit").click()
+        parent.window.exit()
     }
     else{
         webbox("finish")
