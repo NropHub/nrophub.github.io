@@ -101,12 +101,10 @@
                 })
             }
         }
-        dom.get("ifr").onload=function(){
-            if(dom.get("ifr").src=="webbox://finish"){
+        function exit(){
                 $("#ve").slideUp(450,function(){
                     dom.get("ifr").src="about:blank"
                 })
-            }
         }
     </script>
 
