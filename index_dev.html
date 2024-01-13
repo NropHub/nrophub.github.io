@@ -81,7 +81,7 @@
         }
         .rang{
             z-index:900;
-            margin:0px 16px 0px 16px;
+            margin:0px 32px 0px 32px;
         }
     </style>
 </head>
@@ -111,21 +111,33 @@
             <button onclick="滑动(true)" class="mdui-btn mdui-btn-icon mdui-ripple">
                 <i class="mdui-icon material-icons">keyboard_arrow_right</i>
             </button>
-            <!--script>
-                for (var i=1;i<=图片数量;i++){
-                    document.write(`<a href="#tab-${i}" onclick="切换图片(${i})" id="bar-${i}" class="mdui-ripple mdui-ripple-white">${i}</a>`)
-                }
-            </script-->
-            
         </div>
     </div>
     
     <div class="mdui-drawer" id="drawer">
     <ul class="mdui-list">
+      <li class="mdui-subheader">选项</li>
+      <li class="mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-cyan">touch_app</i>
+        <div class="mdui-list-item-content">自动激活</div>
+        <label class="mdui-checkbox">
+          <input type="checkbox" id="opt_autologin" onclick="opt.set('autologin',this.checked)"/>
+          <i class="mdui-checkbox-icon"></i>
+        </label>
+      </li>
+      <li class="mdui-list-item mdui-ripple" onclick="clear_SAC()">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-orange">format_clear</i>
+        <div class="mdui-list-item-content">忘记激活码</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">arrow_forward</i>
+      </li>
       <li class="mdui-subheader">其他</li>
       <li class="mdui-list-item mdui-ripple" onclick="exit()">
         <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-red">exit_to_app</i>
         <div class="mdui-list-item-content">退出</div>
+      </li>
+      <li class="mdui-list-item mdui-ripple" onclick="exit_clear()">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-red">exit_to_app</i>
+        <div class="mdui-list-item-content mdui-text-color-red">退出并忘记激活码</div>
       </li>
     </ul>
   </div>
