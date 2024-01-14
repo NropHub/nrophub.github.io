@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div>
+        <video id="video"></video>
+    </div>
+    <!-- MDUI JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        var video = document.getElementById('video');
+
+
+    if (navigator.mediaDevices.getUserMedia) {
+        //最新的标准API
+        navigator.mediaDevices.getUserMedia({video : {width: 1000, height: 1000}}).then(success).catch(error);
+    } else if (navigator.webkitGetUserMedia) {
+        //webkit核心浏览器
+        navigator.webkitGetUserMedia({video : {width: 1000, height: 1000}},success, error)
+    } else if (navigator.mozGetUserMedia) {
+        //firfox浏览器
+        navigator.mozGetUserMedia({video : {width: 1000, height: 1000}}, success, error);
+    } else if (navigator.getUserMedia) {
+        //旧版API
+        navigator.getUserMedia({video : {width: 1000, height: 1000}}, success, error);
+    }
+
+    function success(stream) {
+        //兼容webkit核心浏览器
+        // let CompatibleURL = window.URL || window.webkitURL;
+
+        //将视频流设置为video元素的源
+        console.log(stream);
+
+        //video.src = CompatibleURL.createObjectURL(stream);
+        video.srcObject = stream;
+        video.play();
+    }
+
+    function error(error) {
+        alert(`访问用户媒体设备失败${error.name}, ${error.message}`);
+    }
+    </script>
+</body>
+
+  </html>
