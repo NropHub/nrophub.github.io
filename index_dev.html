@@ -32,8 +32,12 @@
     dom.w('<script src="js/keys.js"><\/script>')
     //JsArgs
     dom.w('<script src="js/args.js"><\/script>')
-    if(参数["dev"]!=1){
-    var v_count=parseInt(dom.ls.get("local_view_count"))+1
+    if(参数["dev"]!='1'){
+    var v_count=parseInt(dom.ls.get("local_view_count"))
+    if(v_count==""||v_count==undefined){
+        v_count=0
+    }
+    v_count=v_count+1
     dom.ls.set("local_view_count",v_count)
     }
 </script>
