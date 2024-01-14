@@ -13,45 +13,78 @@
 </head>
 
 <body>
-    <div>
-        <video id="video"></video>
-    </div>
+    <video id="video" autoplay style="width: 480px;height: 320px"></video>
+<div>
+    <button id="capture" onclick="handleClickCapture()">拍照</button>
+</div>
+
+<!-- 展示拍摄的照片：画布 -->
+<canvas id="canvas" width="480" height="320"></canvas>
+
     <!-- MDUI JavaScript -->
     <script src="script.js"></script>
     <script>
-        var video = document.getElementById('video');
+    var video = document.getElementById('video');
+    var capture = document.getElementById('capture');
+    var ctx = document.getElementById('canvas').getContext('2d');
 
-
-    if (navigator.mediaDevices.getUserMedia) {
-        //最新的标准API
-        navigator.mediaDevices.getUserMedia({video : {width: 1000, height: 1000}}).then(success).catch(error);
-    } else if (navigator.webkitGetUserMedia) {
-        //webkit核心浏览器
-        navigator.webkitGetUserMedia({video : {width: 1000, height: 1000}},success, error)
-    } else if (navigator.mozGetUserMedia) {
-        //firfox浏览器
-        navigator.mozGetUserMedia({video : {width: 1000, height: 1000}}, success, error);
-    } else if (navigator.getUserMedia) {
-        //旧版API
-        navigator.getUserMedia({video : {width: 1000, height: 1000}}, success, error);
+    /**
+     * 调用用户媒体设备
+     * @param constraints 配置信息
+     * @param success 成功回调函数
+     * @param error 失败回调函数
+     */
+    function getUserMediaToPhoto(constraints, success, error) {
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia(constraints).then(success).catch(error);
+        } else if (navigator.webkitGetUserMedia) {
+            navigator.webkitGetUserMedia(constraints, success, error);
+        } else if (navigator.mozGetUserMedia) {
+            navigator.mozGetUserMedia(constraints, success, error);
+        } else if (navigator.getUserMedia) {
+            navigator.getUserMedia(constraints, success, error);
+        }
     }
 
+    /**
+     * 成功回调函数
+     * @param stream 视频流
+     */
     function success(stream) {
-        //兼容webkit核心浏览器
-        // let CompatibleURL = window.URL || window.webkitURL;
-
-        //将视频流设置为video元素的源
-        console.log(stream);
-
-        //video.src = CompatibleURL.createObjectURL(stream);
-        video.srcObject = stream;
+        var CompatibleURL = window.URL || window.webkitURL;
+        try {
+            video.src = CompatibleURL.createObjectURL(stream);
+        } catch (e) {
+            video.srcObject = stream;
+        }
         video.play();
     }
 
+    /**
+     * 失败回调
+     * @param error 错误对象
+     */
     function error(error) {
-        alert(`访问用户媒体设备失败${error.name}, ${error.message}`);
+        console.log('无法访问媒体设备', error);
+    }
+
+    if (navigator.mediaDevices.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.getUserMedia) {
+        getUserMediaToPhoto({video: {width: 480, height: 320}}, success, error);
+    } else {
+        alert('不支持访问用户媒体设备');
+    }
+
+    /**
+     * 拍照按钮点击事件
+     */
+    function handleClickCapture() {
+        //使在画布上显示
+        ctx.drawImage(video, 0, 0, 480, 320);
+        //获取图片，这里获取到的是base64格式的文件
+        var image = ctx.canvas.toDataURL('image/png');
+        //下面可以根据自己的逻辑进行判断
     }
     </script>
 </body>
 
-  </html>
+</html>
