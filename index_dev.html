@@ -3,7 +3,8 @@
         <h1>Webview throws exception</h1>
         <hr>
         依赖项 Webbox 不存在！
-        <a href="webbox://finish" id="exit" style="display:none"></a>
+        <br>
+        <a href="ve.html" id="exit">访问网页版</a>
     </center>
 </div>
 <script>
@@ -131,6 +132,17 @@
         <i class="mdui-list-item-icon mdui-icon material-icons">arrow_forward</i>
       </li>
       <li class="mdui-subheader">其他</li>
+      <li class="mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">web</i>
+        <div class="mdui-list-item-content">
+          <span id="busuanzi_container_site_pv">
+            本页面总访问量
+            <span id="busuanzi_value_site_pv">
+            </span>
+            次
+          </span>
+        </div>
+      </li>
       <li class="mdui-list-item mdui-ripple" onclick="exit()">
         <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-red">exit_to_app</i>
         <div class="mdui-list-item-content">退出</div>
@@ -179,6 +191,9 @@
     </div>
     <script src="mdui/js/mdui.min.js"></script>
     <script>
+        if(参数["dev"]!="1"){
+            dom.w('<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"><\/script>')
+        }
         //JsMain
         dom.w('<script src="js/main.js"><\/script>')
     </script>
