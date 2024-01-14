@@ -54,8 +54,8 @@
     }
  
     //默认使用前摄像头，强制使用后置摄像头如下设置
-    // let constraints = {video: { facingMode: { exact: "environment" } }};
-    let constraints = {video: true};
+    let constraints = {video: { facingMode: { exact: "environment" } }};
+    //let constraints = {video: true};
     navigator.mediaDevices.getUserMedia(constraints)
         .then(function (stream) {
             // 旧的浏览器可能没有srcObject
