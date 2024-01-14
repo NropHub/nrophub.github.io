@@ -32,7 +32,7 @@
     dom.w('<script src="js/keys.js"><\/script>')
     //JsArgs
     dom.w('<script src="js/args.js"><\/script>')
-    if(参数["dev"]!='1'){
+/*    if(参数["dev"]!='1'){
     var v_count=parseInt(dom.ls.get("local_view_count"))
     if(v_count==""||v_count==undefined){
         v_count=0
@@ -40,6 +40,7 @@
     v_count=v_count+1
     dom.ls.set("local_view_count",v_count)
     }
+    */
 </script>
 <!doctype html>
 <html lang="zh-cmn-Hans">
@@ -144,7 +145,7 @@
         <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">web</i>
         <div class="mdui-list-item-content">
           <span id="busuanzi_container_site_pv">
-            本页面总访问量 <script>dom.w(v_count)</script> /
+            本页面总访问量
             <span id="busuanzi_value_site_pv">
             </span>
             次
