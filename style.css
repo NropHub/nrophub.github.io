@@ -1,0 +1,21 @@
+.wm {
+    position: fixed;
+    z-index: 114514;
+    font-family: monospace;
+}
+.wm-1 {
+    left: 20%;
+    top: 128px;
+    color: white;
+    opacity: 0.08;
+}
+.wm-2 {
+    right: 25%;
+    bottom: 33%;
+    color: black;
+    opacity: 0.05;
+}
+.fab-refresh span {
+    line-height: 48px;
+    font-size: 12px;
+}
